@@ -28,7 +28,7 @@ cv2.createTrackbar('kd','P_I_D', 20, 100, nothing)
 
 servoNeutralPos = 91
 
-cap = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(0)
 width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
 height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
@@ -41,7 +41,7 @@ currentTime = 0
 pid_i = 0
 
 while True:
-    success, img = cap.read()
+    success, img = cam.read()
 
     setpoint = cv2.getTrackbarPos('setpoint', 'TargetPosition')
 
@@ -126,8 +126,8 @@ while True:
     cv2.imshow("mask", mask)
     cv2.imshow("webcam", img)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == 27:
         break
 
-cap.release()
+cam.release()
 cv2.destroyAllWindows()
